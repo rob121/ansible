@@ -1,5 +1,9 @@
 ---
 
+
+## Todo
+## FixPerms www-data for php file and phpmyadmin in /usr/share/phpmyadmin
+## Enable Services
 - name: Install Caddy/Php/Mysql
   hosts: 127.0.0.1
   connection: local
