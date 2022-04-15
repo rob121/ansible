@@ -49,21 +49,52 @@
         caddy_config_mode: Caddyfile
         caddy_caddyfile: |
           {
-              email admin@example.com
-              on_demand_tls {
-                  ask http://localhost:8400
-              }
-          }
-          example.com {
-            log {
-              output file         /var/log/access.log
-              format single_field common_log
-                  level debug
-             }
+    email admin@site.com
+    on_demand_tls {
+        ask http://localhost:8400
+    }
+}
+site.com {
 
-            php_fastcgi localhost:9000
-            metrics /metrics
-          }
-          http://localhost:8400 {
-            respond "OK"
-          }
+    root * /var/www/site.com
+
+   log {
+    output file         /var/log/access.log
+    format single_field common_log
+        level debug
+   }
+
+  php_fastcgi localhost:9000
+
+  metrics /metrics
+}
+
+site.net {
+
+   root * /var/www/site.net
+
+
+   log {
+    output file         /var/log/access.log
+    format single_field common_log
+        level debug
+   }
+
+   handle /myadmin/* {
+        root * /usr/share/phpmyadmin
+        uri strip_prefix /myadmin
+        file_server browse
+        php_fastcgi localhost:9000
+   }
+
+   file_server
+
+   php_fastcgi localhost:9000
+
+   metrics /metrics
+
+}
+
+http://localhost:8400 {
+  respond "OK"
+}
