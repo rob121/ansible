@@ -4,6 +4,32 @@
   hosts: 127.0.0.1
   connection: local
   roles:
+    - role: geerlingguy.php-versions
+      vars:
+        php_version: '7.4'
+    - role: geerlingguy.php
+      vars:
+        php_packages:
+          - libapache2-mod-fastcgi
+          - php7.4-gd
+          - php7.4-cli
+          - php7.4-common
+          - php7.4-curl
+          - php7.4-fpm
+          - php7.4-intl
+          - php7.4-json
+          - php7.4-mbstring
+          - php7.4-mysql
+          - php7.4-opcache
+          - php7.4-tidy
+          - php7.4-xml
+          - php7.4-zip
+        php_webserver_daemon: "caddy"
+        php_default_version_debian: "7.4"
+        php_enable_php_fpm: true
+        php_fpm_state: started
+        php_fpm_enabled_on_boot: true
+        php_use_managed_ini: true
     - role: geerlingguy.mysql
       become: yes
     - role: maxhoesel.caddy.caddy_server
