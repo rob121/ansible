@@ -3,6 +3,18 @@
 - name: Install Caddy/Php/Mysql
   hosts: 127.0.0.1
   connection: local
+  vars: 
+    phpmyadmin_mysql_host: localhost
+    phpmyadmin_mysql_port: ""
+    phpmyadmin_mysql_socket: ""
+    phpmyadmin_mysql_connect_type: tcp
+    phpmyadmin_mysql_user: root
+    phpmyadmin_mysql_password: "{{ mysql_root_password }}"
+  tasks:
+     - name: Ensure phpMyAdmin is installed.
+       apt:
+          name: phpmyadmin
+          state: present
   roles:
     - role: geerlingguy.php-versions
       vars:
