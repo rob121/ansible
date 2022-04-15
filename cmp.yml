@@ -55,7 +55,7 @@
                   ask http://localhost:8400
               }
           }
-          portal.floridarangers.com {
+          example.com {
             log {
               output file         /var/log/access.log
               format single_field common_log
