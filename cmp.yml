@@ -61,10 +61,7 @@
                   level debug
              }
 
-             proxy / 127.0.0.1:8080 {
-                transparent
-             }
-
+            php_fastcgi localhost:9000
             metrics /metrics
           }
           http://localhost:8400 {
