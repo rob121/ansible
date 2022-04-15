@@ -22,7 +22,6 @@
     - role: geerlingguy.php
       vars:
         php_packages:
-          - libapache2-mod-fastcgi
           - php7.4-gd
           - php7.4-cli
           - php7.4-common
